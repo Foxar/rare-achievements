@@ -1,0 +1,42 @@
+
+
+.navbar {
+  display: block;
+  position: fixed;
+  top: 0;
+  background-color: var(--background_color);
+
+  width: 100%;
+  min-height: 7vh;
+
+}
+
+
+
+.navbar #logo
+{
+
+
+  float: left;
+
+}
+.navbar #menus
+{
+  padding: 5px 0 5px 0;
+  float: right;
+
+}
+
+.navbar #menus .MuiButtonGroup-root {
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-right: 2vw;
+  min-height: 5vh;
+}
+
+.navbar #menus .MuiButtonGroup-root .MuiButton-root {
+  color: var(--text_color);
+  background-color: var(--accent_color);
+  border-color: var(--accent_color_dark);
+
+}
