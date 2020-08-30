@@ -1,10 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import Content from './Content';
-import Navbar from './Navbar';
-import {Typography} from '@material-ui/core';
 
 import * as serviceWorker from './serviceWorker';
 
