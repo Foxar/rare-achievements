@@ -43,7 +43,7 @@
     "cross-env": "^7.0.2",
     "file-loader": "^6.0.0",
     "optimize-css-assets-webpack-plugin": "^5.0.4",
-	"webpack": "^4.44.1",
+    "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
   }
 }
