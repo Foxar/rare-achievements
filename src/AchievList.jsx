@@ -44,7 +44,7 @@ class AchievComponent extends React.Component {
     let proxy = "";
     console.log("first fetch");
     //fetch(proxy + "http://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=D04493C2C786E67BD357F527F6EA3F3B&steamid=" +
-    fetch("http://localhost:8080/getGames?steamid=" + this.state.steamid, myInit)
+    fetch("/getGames?steamid=" + this.state.steamid, myInit)
       .then(res => {
         console.log("games res");
         if (res.ok) {
@@ -78,7 +78,7 @@ class AchievComponent extends React.Component {
             //let gameID = 391220;
             console.log("Gonna fetch");
             let gameID = this.state.gamesOwned.response.games[i].appid;
-            fetch("http://localhost:8080/getAchievements?gameID=" + gameID +
+            fetch("/getAchievements?gameID=" + gameID +
               "&steamid=" + this.state.steamid)
               .then(res => res.json())
               .then(
@@ -121,7 +121,7 @@ class AchievComponent extends React.Component {
             //console.log(typeof(this.state.items));
 
 
-            fetch("http://localhost:8080/getAchievementPercentages?gameID=" +
+            fetch("/getAchievementPercentages?gameID=" +
               gameID + "&format=json&steamid=" + this.state.steamid, myInit)
               .then(res => res.json())
               .then(
@@ -167,7 +167,7 @@ class AchievComponent extends React.Component {
 
             //console.log(typeof(this.state.globalAchievStats));
 
-            fetch("http://localhost:8080/getSchemaForGame?gameID=" + gameID + "&l=en", myInit)
+            fetch("/getSchemaForGame?gameID=" + gameID + "&l=en", myInit)
               .then(res => res.json())
               .then(
                 (result) => {
