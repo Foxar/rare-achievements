@@ -21,11 +21,11 @@ headers: {
 
 
 
-app.get('/ping', function (req, res) {
+app.get('/api/ping', function (req, res) {
  return res.send('<h1>pong</h1>');
 });
 
-app.get('/getGames', function (req, res) {
+app.get('/api/getGames', function (req, res) {
   res.set('Access-Control-Allow-Origin', '*');
   res.set('Access-Control-Allow-Methods', 'GET');
   res.set('Content-Type', 'application/json');
@@ -44,7 +44,7 @@ app.get('/getGames', function (req, res) {
         )
 });
 
-app.get('/getAchievements', function (req, res) {
+app.get('/api/getAchievements', function (req, res) {
   res.set('Access-Control-Allow-Origin', '*');
   res.set('Access-Control-Allow-Methods', 'GET');
   res.set('Content-Type', 'application/json');
@@ -66,7 +66,7 @@ app.get('/getAchievements', function (req, res) {
 });
 
 
-app.get('/getAchievementPercentages', function (req, res) {
+app.get('/api/getAchievementPercentages', function (req, res) {
   res.set('Access-Control-Allow-Origin', '*');
   res.set('Access-Control-Allow-Methods', 'GET');
   res.set('Content-Type', 'application/json');
@@ -87,7 +87,7 @@ app.get('/getAchievementPercentages', function (req, res) {
 });
 
 
-app.get('/getSchemaForGame', function (req, res) {
+app.get('/api/getSchemaForGame', function (req, res) {
   res.set('Access-Control-Allow-Origin', '*');
   res.set('Access-Control-Allow-Methods', 'GET');
   res.set('Content-Type', 'application/json');
@@ -107,9 +107,5 @@ app.get('/getSchemaForGame', function (req, res) {
 });
 
 
-
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
 
 app.listen(process.env.PORT || 8080);
