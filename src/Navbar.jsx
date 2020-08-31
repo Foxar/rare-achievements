@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../static/logo.svg';
+
 import './Navbar.css';
 
 import { TextField } from '@material-ui/core';

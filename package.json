@@ -16,14 +16,9 @@
     "express": "^4.17.1",
     "node-fetch": "^2.6.0",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.3"
+    "react-dom": "^16.13.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
     "deploy": "cross-env NODE_ENV=production webpack",
     "watch": "webpack --watch"
   },
@@ -48,7 +43,7 @@
     "cross-env": "^7.0.2",
     "file-loader": "^6.0.0",
     "optimize-css-assets-webpack-plugin": "^5.0.4",
-    "webpack": "^4.44.1",
+	"webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
   }
 }
