@@ -80,7 +80,6 @@ class AchievComponent extends React.Component {
                   if (items.playerstats === undefined) {
                     this.setState({
                       items: result,
-                      isLoaded: this.state.isLoaded + 1,
                     });
                   } else {
                     items.playerstats.achievements = items.playerstats.achievements
@@ -108,9 +107,6 @@ class AchievComponent extends React.Component {
 
                 if (result.achievementpercentages === undefined) {
                   console.log('RESULT EMPTY');
-                  this.setState({
-                    isLoaded: this.state.isLoaded + 1,
-                  });
                 } else {
                   result.achievementpercentages.achievements.forEach((item) => {
                     item.gameID = gameID;
@@ -122,10 +118,12 @@ class AchievComponent extends React.Component {
                     .concat(result.achievementpercentages.achievements);
                   console.log(globalAchievStats);
                   this.setState({
-                    isLoaded: this.state.isLoaded + 1,
                     globalAchievStats: tempglobalAchievStats,
                   });
                 }
+				this.setState({
+                  isLoaded: this.state.isLoaded + 1,
+                });
               },
               (error) => {
                 this.setState({
@@ -143,9 +141,7 @@ class AchievComponent extends React.Component {
 
                 if (result.game.gameName === undefined
 				|| result.game.availableGameStats.achievements === undefined) {
-                  this.setState({
-                    isLoaded: this.state.isLoaded + 1,
-                  });
+
                 } else {
                   result.game.availableGameStats.achievements.forEach((item) => {
                     item.gameID = gameID;
@@ -153,18 +149,19 @@ class AchievComponent extends React.Component {
                   console.log(result.game);
                   if (schemaData.length === -1) {
                     this.setState({
-                      isLoaded: this.state.isLoaded + 1,
                       schemaData: result,
                     });
                   } else {
                     console.log(schemaData);
                     const tempSchemaData = schemaData.concat(result);
                     this.setState({
-                      isLoaded:	this.state.isLoaded + 1,
                       schemaData:	tempSchemaData,
                     });
                   }
                 }
+				this.setState({
+                  isLoaded: this.state.isLoaded + 1,
+                });
               },
               (error) => {
                 this.setState({
