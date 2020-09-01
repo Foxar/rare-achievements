@@ -60,10 +60,12 @@ class AchievComponent extends React.Component {
           if (game.playtime_forever > 600) return true;
           return false;
         });
-
+			const {
+				gamesOwned
+			} = this.state;
         for (let i = 0; i < gamesOwned.response.games.length; i += 1) {
 			const {
-				gamesOwned, items, globalAchievStats, schemaData,
+				items, globalAchievStats, schemaData,
 			} = this.state;
           const gameID = gamesOwned.response.games[i].appid;
           fetch(`/api/getAchievements?gameID=${gameID
