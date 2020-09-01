@@ -55,14 +55,13 @@ class AchievComponent extends React.Component {
         });
 
         
-
+		const {
+				gamesOwned
+			} = this.state;
         gamesOwned.response.games = gamesOwned.response.games.filter((game) => {
           if (game.playtime_forever > 600) return true;
           return false;
         });
-			const {
-				gamesOwned
-			} = this.state;
         for (let i = 0; i < gamesOwned.response.games.length; i += 1) {
 			const {
 				items, globalAchievStats, schemaData,
