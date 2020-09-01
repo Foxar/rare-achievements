@@ -1,12 +1,7 @@
 import React from 'react';
+import { TextField, Button, Typography } from '@material-ui/core';
 import AchievComponent from './AchievList';
 import './App.css';
-
-import { TextField } from '@material-ui/core';
-import { Button } from '@material-ui/core';
-import { Typography } from '@material-ui/core';
-
-
 
 class App extends React.Component {
   constructor(props) {
@@ -14,38 +9,36 @@ class App extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.state = {
       clicked: false,
-      steamid: 0
+      steamid: 0,
     };
   }
 
   handleChange(e) {
-
     this.setState({ steamid: e.target.value });
   }
 
   render() {
+    const { clicked, steamid } = this.state;
     return (
 
       <span>
-        <div class="content">
+        <div className="content">
 
           <div id="steamid" size="medium">
             <TextField onChange={this.handleChange} variant="filled" />
-            <Button onClick={() => { this.setState({ clicked: true }) }} id="inputsend" type="submit" variant="contained" color="primary" >Submit</Button>
+            <Button onClick={() => { this.setState({ clicked: true }); }} id="inputsend" type="submit" variant="contained" color="primary">Submit</Button>
           </div>
           <Typography variant="subtitle1">Insert steam ID64 </Typography>
         </div>
 
-        <div class="achievCont">
-          {this.state.clicked ? <AchievComponent steamid={this.state.steamid} /> : <span />}
-          {console.log("app steamid: " + this.state.steamid)}
+        <div className="achievCont">
+          {clicked ? <AchievComponent steamid={steamid} /> : <span />}
+          {console.log(`app steamid: ${steamid}`)}
         </div>
 
       </span>
-    )
+    );
   }
 }
-
-
 
 export default App;
