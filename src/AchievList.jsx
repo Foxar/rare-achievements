@@ -55,8 +55,9 @@ class AchievComponent extends React.Component {
         });
 
         const {
-          gamesOwned, items, isLoaded, globalAchievStats, schemaData,
+          gamesOwned, items, globalAchievStats, schemaData,
         } = this.state;
+		const currIsloaded
 
         gamesOwned.response.games = gamesOwned.response.games.filter((game) => {
           if (game.playtime_forever > 600) return true;
@@ -80,7 +81,7 @@ class AchievComponent extends React.Component {
                   if (items.playerstats === undefined) {
                     this.setState({
                       items: result,
-                      isLoaded: isLoaded + 1,
+                      isLoaded: this.state.isLoaded + 1,
                     });
                   } else {
                     items.playerstats.achievements = items.playerstats.achievements
@@ -88,12 +89,12 @@ class AchievComponent extends React.Component {
                   }
                 }
                 this.setState({
-                  isLoaded: isLoaded + 1,
+                  isLoaded: this.state.isLoaded + 1,
                 });
               },
               (error) => {
                 this.setState({
-                  isLoaded: isLoaded + 1,
+                  isLoaded: this.state.isLoaded + 1,
                   error,
                 });
               },
@@ -109,7 +110,7 @@ class AchievComponent extends React.Component {
                 if (result.achievementpercentages === undefined) {
                   console.log('RESULT EMPTY');
                   this.setState({
-                    isLoaded: isLoaded + 1,
+                    isLoaded: this.state.isLoaded + 1,
                   });
                 } else {
                   result.achievementpercentages.achievements.forEach((item) => {
@@ -129,7 +130,7 @@ class AchievComponent extends React.Component {
               },
               (error) => {
                 this.setState({
-                  isLoaded: isLoaded + 1,
+                  isLoaded: this.state.isLoaded + 1,
 
                   error,
                 });
@@ -168,7 +169,7 @@ class AchievComponent extends React.Component {
               },
               (error) => {
                 this.setState({
-                  isLoaded: isLoaded + 1,
+                  isLoaded: this.state.isLoaded + 1,
                   error,
                 });
               },
