@@ -122,7 +122,7 @@ class AchievComponent extends React.Component {
                     .concat(result.achievementpercentages.achievements);
                   console.log(globalAchievStats);
                   this.setState({
-                    isLoaded: isLoaded + 1,
+                    isLoaded: this.state.isLoaded + 1,
                     globalAchievStats: tempglobalAchievStats,
                   });
                 }
