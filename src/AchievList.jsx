@@ -54,9 +54,7 @@ class AchievComponent extends React.Component {
           gamesLoaded: true,
         });
 
-        const {
-          gamesOwned, items, globalAchievStats, schemaData,
-        } = this.state;
+        
 
         gamesOwned.response.games = gamesOwned.response.games.filter((game) => {
           if (game.playtime_forever > 600) return true;
@@ -64,6 +62,9 @@ class AchievComponent extends React.Component {
         });
 
         for (let i = 0; i < gamesOwned.response.games.length; i += 1) {
+			const {
+				gamesOwned, items, globalAchievStats, schemaData,
+			} = this.state;
           const gameID = gamesOwned.response.games[i].appid;
           fetch(`/api/getAchievements?gameID=${gameID
           }&steamid=${steamid}`)
