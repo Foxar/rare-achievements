@@ -79,12 +79,12 @@ class AchievComponent extends React.Component {
                   for (let a = 0; a < result.playerstats.achievements.length; a += 1) {
                     result.playerstats.achievements[a].gameID = gameID;
                   }
-                  if (items.playerstats === undefined) {
+                  if (this.state.items.playerstats === undefined) {
                     this.setState({
                       items: result,
                     });
                   } else {
-                    items.playerstats.achievements = items.playerstats.achievements
+                    this.state.items.playerstats.achievements = this.state.items.playerstats.achievements
                       .concat(result.playerstats.achievements);
                   }
                 }
@@ -115,10 +115,10 @@ class AchievComponent extends React.Component {
                   });
 
                   console.log(`Achiev stats for game ${gameID}`);
-                  console.log(globalAchievStats);
-                  const tempglobalAchievStats = globalAchievStats
+                  console.log(this.state.globalAchievStats);
+                  const tempglobalAchievStats = this.state.globalAchievStats
                     .concat(result.achievementpercentages.achievements);
-                  console.log(globalAchievStats);
+                  console.log(tempglobalAchievStats);
                   this.setState({
                     globalAchievStats: tempglobalAchievStats,
                   });
@@ -149,13 +149,13 @@ class AchievComponent extends React.Component {
                     item.gameID = gameID;
                   });
                   console.log(result.game);
-                  if (schemaData.length === -1) {
+                  if (this.state.schemaData.length === -1) {
                     this.setState({
                       schemaData: result,
                     });
                   } else {
-                    console.log(schemaData);
-                    const tempSchemaData = schemaData.concat(result);
+                    console.log(this.state.schemaData);
+                    const tempSchemaData = this.state.schemaData.concat(result);
                     this.setState({
                       schemaData:	tempSchemaData,
                     });
