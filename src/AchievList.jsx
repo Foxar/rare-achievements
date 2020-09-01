@@ -57,7 +57,6 @@ class AchievComponent extends React.Component {
         const {
           gamesOwned, items, globalAchievStats, schemaData,
         } = this.state;
-		const currIsloaded
 
         gamesOwned.response.games = gamesOwned.response.games.filter((game) => {
           if (game.playtime_forever > 600) return true;
