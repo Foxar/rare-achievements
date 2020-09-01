@@ -198,7 +198,7 @@ class AchievComponent extends React.Component {
       console.log(error);
       return <h1>error</h1>;
     }
-
+	console.log("FINISHED LOADING");
     console.log(items);
     let filtered = items.playerstats.achievements.filter((item) => item.achieved);
     console.log(globalAchievStats);
