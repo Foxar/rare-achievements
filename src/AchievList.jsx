@@ -144,7 +144,7 @@ class AchievComponent extends React.Component {
                 if (result.game.gameName === undefined
 				|| result.game.availableGameStats.achievements === undefined) {
                   this.setState({
-                    isLoaded: isLoaded + 1,
+                    isLoaded: this.state.isLoaded + 1,
                   });
                 } else {
                   result.game.availableGameStats.achievements.forEach((item) => {
@@ -153,14 +153,14 @@ class AchievComponent extends React.Component {
                   console.log(result.game);
                   if (schemaData.length === -1) {
                     this.setState({
-                      isLoaded: isLoaded + 1,
+                      isLoaded: this.state.isLoaded + 1,
                       schemaData: result,
                     });
                   } else {
                     console.log(schemaData);
                     const tempSchemaData = schemaData.concat(result);
                     this.setState({
-                      isLoaded:	isLoaded + 1,
+                      isLoaded:	this.state.isLoaded + 1,
                       schemaData:	tempSchemaData,
                     });
                   }
