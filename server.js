@@ -34,12 +34,13 @@ app.get('/api/getGames', function (req, res) {
         .then(steam_res => steam_res.json())
         .then(
           (result) => {
+            console.log(req.query);
             console.log(result);
-
             return res.send(result);
           },
           (error) => {
-            console.log("Error");
+            console.log("Error owned games" + req.query);
+
           }
         )
 });
@@ -55,12 +56,12 @@ app.get('/api/getAchievements', function (req, res) {
         .then(steam_res => steam_res.json())
         .then(
           (result) => {
+            console.log(req.query);
             console.log(result);
-
             return res.send(result);
           },
           (error) => {
-            console.log("Error player achievements");
+            console.log("Error achievs" + req);
           }
         )
 });
@@ -77,11 +78,13 @@ app.get('/api/getAchievementPercentages', function (req, res) {
         .then(steam_res => steam_res.json())
         .then(
           (result) => {
+            console.log(req.query);
             console.log(result);
             return res.send(result);
           },
           (error) => {
-            console.log("Error global achievements");
+            console.log("Error global achievs" + req.query);
+
           }
         )
 });
@@ -96,12 +99,13 @@ app.get('/api/getSchemaForGame', function (req, res) {
         .then(steam_res => steam_res.json())
         .then(
           (result) => {
+            console.log(req.query);
             console.log(result);
-
             return res.send(result);
           },
           (error) => {
-            console.log("Error scehema");
+            console.log("Error schema" + req.query);
+
           }
         )
 });
