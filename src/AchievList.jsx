@@ -44,8 +44,7 @@ class AchievComponent extends React.Component {
         if (res.ok) {
           return res.json();
         }
-        console.log('Error');
-        console.log(res);
+        console.log('Get games error');
         return 'Getgames error';
       })
       .then((resultGames) => {
@@ -54,7 +53,7 @@ class AchievComponent extends React.Component {
           gamesLoaded: true,
         });
 
-        
+
 		const {
 				gamesOwned
 			} = this.state;
@@ -105,32 +104,23 @@ class AchievComponent extends React.Component {
             .then((res) => res.json())
             .then(
               (result) => {
-                console.log(result);
-
-                if (result.achievementpercentages === undefined) {
-                  console.log('RESULT EMPTY');
-                } else {
+                if (result.achievementpercentages !== undefined) {
                   result.achievementpercentages.achievements.forEach((item) => {
-                    item.gameID = gameID;
-                  });
-
-                  console.log(`Achiev stats for game ${gameID}`);
-                  console.log(this.state.globalAchievStats);
-                  const tempglobalAchievStats = this.state.globalAchievStats
-                    .concat(result.achievementpercentages.achievements);
-                  console.log(tempglobalAchievStats);
-                  this.setState({
-                    globalAchievStats: tempglobalAchievStats,
-                  });
+                  item.gameID = gameID;
+                });
+                const tempglobalAchievStats = this.state.globalAchievStats
+                .concat(result.achievementpercentages.achievements);
+                this.setState({
+                  globalAchievStats: tempglobalAchievStats,
+                });
                 }
-				this.setState({
+                this.setState({
                   isLoaded: this.state.isLoaded + 1,
                 });
               },
               (error) => {
                 this.setState({
                   isLoaded: this.state.isLoaded + 1,
-
                   error,
                 });
               },
@@ -139,29 +129,23 @@ class AchievComponent extends React.Component {
             .then((res) => res.json())
             .then(
               (result) => {
-                console.log(result);
-
-                if (result.game.gameName === undefined
-				|| result.game.availableGameStats.achievements === undefined) {
-
-                } else {
+                if (result.game.gameName !== undefined
+                && result.game.availableGameStats.achievements !== undefined) {
                   result.game.availableGameStats.achievements.forEach((item) => {
                     item.gameID = gameID;
                   });
-                  console.log(result.game);
                   if (this.state.schemaData.length === -1) {
                     this.setState({
                       schemaData: result,
                     });
                   } else {
-                    console.log(this.state.schemaData);
                     const tempSchemaData = this.state.schemaData.concat(result);
                     this.setState({
                       schemaData:	tempSchemaData,
                     });
                   }
                 }
-				this.setState({
+		            this.setState({
                   isLoaded: this.state.isLoaded + 1,
                 });
               },
@@ -182,53 +166,40 @@ class AchievComponent extends React.Component {
   }
 
   render() {
-    const {
-      error, isLoaded, items, globalAchievStats, schemaData, gamesOwned, gamesLoaded,
-    } = this.state;
-    console.log(gamesOwned);
-    if (!gamesLoaded) {
-      return (<LinearProgress />);
-    } if (isLoaded < (3 * gamesOwned.response.games.length)) {
-      console.log(isLoaded);
-      const progress = isLoaded / (3 * gamesOwned.response.games.length) * 100;
-      console.log(progress);
-      return (<div><LinearProgress variant="determinate" value={progress} /></div>);
-    } if (error) {
-      console.log(error);
-      return <h1>error</h1>;
-    }
-	console.log("FINISHED LOADING");
-    console.log(items);
-    let filtered = items.playerstats.achievements.filter((item) => item.achieved);
-    console.log(globalAchievStats);
-    for (let i = 0; i < globalAchievStats.length; i += 1) {
-      for (let j = 0; j < filtered.length; j += 1) {
-        if (globalAchievStats[i].name === filtered[j].apiname && filtered[j].globPerc === undefined
-            && globalAchievStats[i].gameID === filtered[j].gameID) {
-          console.log(globalAchievStats[i]);
-          console.log(filtered[j]);
-          console.log(`Setting ${filtered[j].apiname} to ${globalAchievStats[i].percent}with i ${i}`);
-          filtered[j].globPerc = globalAchievStats[i].percent;
-        }
+      const {
+        error, isLoaded, items, globalAchievStats, schemaData, gamesOwned, gamesLoaded,
+      } = this.state;
+      if (!gamesLoaded) {
+        return (<LinearProgress />);
+      } if (isLoaded < (3 * gamesOwned.response.games.length)) {
+        const progress = isLoaded / (3 * gamesOwned.response.games.length) * 100;
+        return (<div><LinearProgress variant="determinate" value={progress} /></div>);
+      } if (error) {
+        return <h1>error</h1>;
       }
-    }
-    filtered = filtered.sort((a, b) => a.globPerc - b.globPerc);
-    filtered = filtered.slice(0, 10);
-
-    console.log(filtered);
-
-    for (let a = 0; a < schemaData.length; a += 1) {
-      console.log(a);
-      for (let i = 0; i < schemaData[a].game.availableGameStats.achievements.length; i += 1) {
+      let filtered = items.playerstats.achievements.filter((item) => item.achieved);
+      for (let i = 0; i < globalAchievStats.length; i += 1) {
         for (let j = 0; j < filtered.length; j += 1) {
-          if (schemaData[a].game.availableGameStats.achievements[i].name === filtered[j].apiname
-				&& schemaData[a].game.availableGameStats.achievements[i].gameID
-				=== filtered[j].gameID) {
-            filtered[j].imgurl = schemaData[a].game.availableGameStats.achievements[i].icon;
+          if (globalAchievStats[i].name === filtered[j].apiname && filtered[j].globPerc === undefined
+              && globalAchievStats[i].gameID === filtered[j].gameID) {
+            filtered[j].globPerc = globalAchievStats[i].percent;
           }
         }
       }
-    }
+      filtered = filtered.sort((a, b) => a.globPerc - b.globPerc);
+      filtered = filtered.slice(0, 10);
+
+      for (let a = 0; a < schemaData.length; a += 1) {
+        for (let i = 0; i < schemaData[a].game.availableGameStats.achievements.length; i += 1) {
+          for (let j = 0; j < filtered.length; j += 1) {
+            if (schemaData[a].game.availableGameStats.achievements[i].name === filtered[j].apiname
+      		      && schemaData[a].game.availableGameStats.achievements[i].gameID
+      		        === filtered[j].gameID) {
+              filtered[j].imgurl = schemaData[a].game.availableGameStats.achievements[i].icon;
+            }
+          }
+        }
+      }
 
     return (
       <ul className="list">

@@ -35,6 +35,9 @@ class Content extends React.Component {
           <span>
             <Navbar onPageSwitch={this.handlePageSwitch} />
             <h1 className="aboutmeheader">About me</h1>
+            <Typography><p>This web application allows you to check out of all achievements
+            for all games assigned to a steam account, which are the rarest.</p></Typography>
+            <Typography><p>Make sure the steam profile's privacy settings are set to public.</p></Typography>
           </span>
         );
     }

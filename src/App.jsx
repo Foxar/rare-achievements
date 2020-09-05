@@ -33,7 +33,6 @@ class App extends React.Component {
 
         <div className="achievCont">
           {clicked ? <AchievComponent steamid={steamid} /> : <span />}
-          {console.log(`app steamid: ${steamid}`)}
         </div>
 
       </span>
