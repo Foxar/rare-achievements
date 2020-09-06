@@ -178,6 +178,7 @@ class AchievComponent extends React.Component {
       } if (isLoaded < (3 * gamesOwned.response.games.length)) {
         if(gamesOwned.response.games.length == 0)
         {
+          console.log("Privacy Error");
           return <div><Alert severity="error">Failed to retrieve games playtime - game details might be private.</Alert></div>
         }
         const progress = isLoaded / (3 * gamesOwned.response.games.length) * 100;
