@@ -9,7 +9,6 @@ function Navbar(props) {
   return (
 
     <div className="navbar">
-      <div id="logo">logo</div>
       <div id="menus">
         <ButtonGroup disableElevation variant="contained" color="primary">
           <Button onClick={() => { props.onPageSwitch(0); }}>Rarest Achievement</Button>
